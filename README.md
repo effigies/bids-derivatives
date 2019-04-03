@@ -1,1 +1,1 @@
-# BIDS Derivatives Metadata
+# BIDS Applications and Derivatives
