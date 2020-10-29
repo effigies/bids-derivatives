@@ -11,7 +11,7 @@ class: center middle
 name: footer
 layout: true
 
-<div class="slide-slug">BIDS Computational Models - Princeton, NJ - Apr 2019</div>
+<div class="slide-slug">Open and Reproducible Neuroimaging - Oldenburg - Nov 2020</div>
 
 ---
 layout: true
@@ -291,7 +291,7 @@ name: Derivatives
 
 #### Dataset-level metadata is stored in augmented [`dataset_description.json`](https://124-151034407-gh.circle-artifacts.com/0/home/circleci/project/site/05-derivatives/01-introduction.html#derived-dataset-and-pipeline-description):
 
-* `PipelineDescription` contains references to the code (including version)
+* `GeneratedBy` contains references to the code (including versions)
   that produced the derivative dataset.
 * `SourceDatasets` is a list of references to the specific version of the
   dataset analyzed
@@ -301,7 +301,7 @@ name: Derivatives
 #### Basic metadata remains in filenames
 
 ```
-fmriprep/sub-01/func/sub-01_task-rest_space-fsaverage_hemi-L.func.gii
+fmriprep/sub-01/func/sub-01_task-rest_space-fsaverage_hemi-L_bold.func.gii
 ```
 
 --
