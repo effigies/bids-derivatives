@@ -315,6 +315,56 @@ fmriprep/sub-01/func/sub-01_task-rest_space-fsaverage_hemi-L_bold.func.gii
 
 ---
 
+## Preprocessed or cleaned data
+
+Preprocessing does not change the type of the data. For example,
+
+```
+rawdata/
+  sub-01/
+    func/
+      sub-01_task-rest_bold.nii.gz
+
+preprocessed/
+  sub-01/
+    func/
+      sub-01_task-rest_space-MNI_desc-preproc_bold.nii.gz
+```
+
+* `space-<label>` - Indicates that a file has been registered to some
+  reference, such as standard templates or another image
+* `desc-<label>` - Generic label to describing preprocessing
+
+Derivatives must have *some* distinguishing entity from raw data.
+
+---
+
+## Binary masks
+
+Binary masks have the suffix `mask`.
+
+```
+lesion_masks/
+  sub-01/
+    anat/
+      sub-01_desc-lesion_mask.nii.gz
+```
+
+## Segmentations
+
+Discrete segmentations have the suffix `dseg` and probabilistic or
+partial-volume segmentations have the suffix `probseg`.
+
+```
+parcellations/
+  sub-01/
+    anat/
+      sub-01_space-orig_dseg.nii.gz
+      sub-01_space-orig_label-WM_probseg.nii.gz
+```
+
+---
+
 Derivatives generally fall into three categories:
 
 1. Preprocessed images (or otherwise transformed data) that can be used for further
@@ -364,8 +414,8 @@ BIDS is a common way of arranging neuroscientific data
 --
 
 ... and gives rise to
-[derivatives](https://github.com/bids-standard/bids-specification/pull/109), which are
-also BIDS datasets, and can be published and analyzed
+[derivatives](https://bids-specification.readthedocs.io/en/stable/05-derivatives/01-introduction.html),
+which are also BIDS datasets, and can be published and analyzed.
 
 ---
 layout: true
