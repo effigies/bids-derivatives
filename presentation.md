@@ -441,6 +441,6 @@ class: center middle
 
 ---
 
-# Questions?
+# Thank You
 
 ##### [effigies.github.io/bids-derivatives](https://effigies.github.io/bids-derivatives)
