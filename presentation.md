@@ -125,7 +125,7 @@ querying and manipulating BIDS datasets.
 --
 
 These are the sort of utilities everybody writes for whatever structure their
-lab uses. So BIDS can save us time.
+lab uses.
 
 --
 
@@ -437,11 +437,11 @@ Derivatives generally fall into three categories:
 
   * Tissue segmentations
   * Normalized BOLD series
-  * Fitted diffusion model parameters
+  * Filtered EEG time series
 
 --
 
-2. Measures of statistics of interest
+2. Measures of interest
 
   * Parcellation statistics
   * Local functional connectivity density
