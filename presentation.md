@@ -89,6 +89,48 @@ count: false
 layout: true
 template: footer
 
+.install-cmd[
+```Bash
+pip install pybids
+```
+]
+
+---
+
+# PyBIDS
+
+A common specification of neuroimaging datasets affords queries for and
+adaptation to the available data.
+
+[PyBIDS](https://github.com/bids-standard/pybids/) is a Python library for
+querying and manipulating BIDS datasets.
+
+
+```Python
+>>> from bids import BIDSLayout
+>>> layout = BIDSLayout('/data/bids/openneuro/ds000003')
+>>> bold = layout.get(subject='01', suffix='bold', extension='.nii.gz')
+>>> bold
+[<BIDSImageFile filename='.../sub-01/func/sub-01_task-rhymejudgment_bold.nii.gz'>]
+>>> bold[0].get_metadata()
+{'RepetitionTime': 2.0, 'TaskName': 'rhyme judgment'}
+>>> bold[0].get_entities()
+{'datatype': 'func',
+ 'extension': '.nii.gz',
+ 'subject': '01',
+ 'suffix': 'bold',
+ 'task': 'rhymejudgment'}
+```
+
+--
+
+These are the sort of utilities everybody writes for whatever structure their
+lab uses. So BIDS can save us time.
+
+--
+
+[BIDS-MATLAB](https://github.com/bids-standard/bids-matlab) is a similar project for MATLAB / Octave
+
 ---
 layout: true
 template: footer
@@ -98,29 +140,10 @@ name: Apps
 
 ---
 
-.install-cmd[
-```Bash
-pip install pybids
-```
-]
-
 A common specification of neuroimaging datasets affords queries for and
 adaptation to the available data.
 
-For example, [PyBIDS](https://github.com/bids-standard/pybids/) allows:
-
-```Python
->>> layout = BIDSLayout('/data/bids/ds000003')
->>> bold = layout.get(subject='01', suffix='bold')
->>> bold[0].filename                                                                           
-'sub-01_task-rhymejudgment_bold.nii.gz'
->>> bold[0].get_metadata()
-{'RepetitionTime': 2.0, 'TaskName': 'rhyme judgment'}
-```
-
 --
-
-&nbsp;
 
 Queryable (meta)data allows a very simple protocol for a
 [BIDS App](https://bids-apps.neuroimaging.io/apps/):
@@ -131,7 +154,27 @@ bids-app /bids-directory /output-directory participant [OPTIONS]
 
 .footnote[
 \* Note that `participant` is an analysis level. Apps may also operate
-at the `run`, `session` or `dataset` levels.]
+at the `run`, `session` or `group` levels.
+]
+
+--
+
+## Examples
+
+**MRIQC**
+
+```Bash
+mriqc /data/bids/openneuro/ds000228 /data/processed/ds000228-mriqc group
+```
+
+--
+
+**fMRIPrep**
+
+```Bash
+fmriprep /data/bids/openneuro/ds000228 /data/processed/ds000228-fmriprep \
+    participant --participant-label pixar001
+```
 
 ---
 
@@ -267,28 +310,23 @@ template: footer
 
 Start-to-finish pipelines aid in performing *reproducible* analyses.
 
-  * Open analysis on open data is subject to replication
-  * Identical analyses on similar data tests for robustness
+<figure style="width: 60%">
+![:img Reproducibility matrix, 100%](assets/ReproducibleMatrix.jpg)
+<figcaption>From <a href="https://the-turing-way.netlify.app/reproducibility/03/definitions.html#The-Turing-Way-definition-of-reproducibility">The
+Turing Way, Ch. 2</a>; doi:![:doi](10.5281/zenodo.3233853)</figcaption>
+</figure>
 
 --
 
-* Container technologies partially address environmental sources of
-  variability &mdash; see, *e.g.*,
-  [Gronenschild, et al. (2012)](https://doi.org/10.1371/journal.pone.0038234)
-  or [Glatard, et al. (2015)](https://doi.org/10.3389/fninf.2015.00012)
+Open analysis on open data is subject to independent reproduction.
 
 --
 
-* The uniform interface also eases deployment to HPC or cloud environments
-  like [CBRAIN](http://mcin.ca/technology/cbrain/) or
-  [AWS Batch](https://aws.amazon.com/batch/).
+Accepting BIDS datasets makes *replicating* results on independent data easier.
 
 --
 
-* The output of a BIDS App is a *derivative* dataset. The BIDS standard is
-[being extended](https://124-151034407-gh.circle-artifacts.com/0/home/circleci/project/site/05-derivatives/01-introduction.html)
-to describe many types of derivatives, with a focus on derivatives that
-can be reused in yet more BIDS apps.
+A common interface also makes independent analyses easier to write and compare.
 
 ---
 layout: true
@@ -299,6 +337,12 @@ name: Derivatives
 
 ---
 
+The output of a BIDS App is a *derivative* dataset. The BIDS standard is
+[being extended](https://bids-specification.readthedocs.io/en/derivatives/05-derivatives/01-introduction.html)
+to describe many types of derivatives, with a focus on derivatives that
+can be reused in yet more BIDS apps.
+
+--
 
 #### Dataset-level metadata is stored in augmented [`dataset_description.json`](https://124-151034407-gh.circle-artifacts.com/0/home/circleci/project/site/05-derivatives/01-introduction.html#derived-dataset-and-pipeline-description):
 
@@ -405,38 +449,38 @@ Derivatives generally fall into three categories:
 
 --
 
-3. Figures and reports for assessing the quality of data/processing
-
-  * Surface reconstruction plots
-  * Brain-extraction mask overlays
-  * Susceptibility distortion correction before/after
+3. Figures and reports for assessing the quality of data/processing,
+   or including in manuscripts
 
 ---
 template: footer
 
 # Conclusion
 
-BIDS is a common way of arranging neuroscientific data
+* BIDS is a standard for organizing neuroimaging data and metadata.
 
 --
 
-... which affords programmatic querying (e.g.,
-  [PyBIDS](https://github.com/bids-standard/pybids))
+* PyBIDS provides programmatic access to files and metadata in BIDS datasets.
 
 --
 
-... which affords a simple application protocol
-  ([BIDS Apps](https://doi.org/10.1371/journal.pcbi.1005209.g001))
+* BIDS Apps use a common protocol to process datasets, improving interoperability and
+  facilitating reproducibility.
 
 --
 
-... which facilitates large-scale, reproducible computation
+* BIDS Derivatives are processed datasets that can be queried like BIDS datasets, enabling
+  higher-order applications.
 
 --
 
-... and gives rise to
-[derivatives](https://bids-specification.readthedocs.io/en/stable/05-derivatives/01-introduction.html),
-which are also BIDS datasets, and can be published and analyzed.
+* Apps incentivize using BIDS, datasets incentivize writing apps.
+
+--
+
+* A growing ecosystem makes it worthwhile to produce tools that can take advantage of open
+  datasets and derivatives.
 
 ---
 layout: true
