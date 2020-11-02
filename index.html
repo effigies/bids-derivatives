@@ -198,6 +198,19 @@
           position: absolute;
           right: 4em;
       }
+      figure {
+	  display: block;
+	  margin-left: auto;
+	  margin-right: auto;
+	  font-size: 8pt;
+      }
+      figcaption {
+	  text-align: right;
+      }
+      figcaption a {
+        color: #444444;
+        text-decoration: underline dotted;
+      }
     </style>
   </head>
   <body>
@@ -206,9 +219,20 @@
     <script src="remark-0.14.0.min.js" type="text/javascript">
     </script>
     <script type="text/javascript">
+      // Use: ![:img Alt text with spaces but not commas, 50%](image.png)
       remark.macros.img = function (altText, width) {
         var url = this;
         return '<img alt="' + altText + '" src="' + url + '" style="width: ' + width + '" />';
+      };
+      // Use: ![:video](10.5129/10234)
+      remark.macros.video = function (width) {
+        var url = this;
+        return '<video src="' + url + '" width="' + width + '" preload="auto" controls />';
+      };
+      // Use: ![:doi](10.5129/10234)
+      remark.macros.doi = function () {
+	var doi = this;
+	return '<a href="https://doi.org/' + doi + '">' + doi + '</a>';
       };
       var slideshow = remark.create({
           highlightStyle: 'monokai',

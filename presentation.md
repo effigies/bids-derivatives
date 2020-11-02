@@ -237,30 +237,35 @@ count: false
 For development and distribution, BIDS Apps encourages a continuous-integration
 (CI) approach.
 
-<div align="center" style='margin-top: 1em'>
-<img alt="BIDS App creation" src="assets/bids-app-creation.png" width="75%">
-</div>
+<figure style="width: 70%">
+![:img BIDS App creation, 100%](assets/bids-app-creation.png)
+<figcaption>From doi:![:doi](10.1371/journal.pcbi.1005209.g001)</figcaption>
+</figure>
 
-.footnote[
-From doi:[10.1371/journal.pcbi.1005209.g001](https://doi.org/10.1371/journal.pcbi.1005209.g001)
-]
+--
+
+The uniform interface also eases deployment to HPC or cloud environments like
+[CBRAIN](http://mcin.ca/technology/cbrain/) or [AWS Batch](https://aws.amazon.com/batch/).
 
 ---
 
 BIDS Apps use the notion of analysis levels, which provide natural opportunities for
 parallelism.
 
-<div align="center" style='margin-top: 1em'>
-<img alt="BIDS App workflow" src="assets/bids-app-workflow.png" width="85%">
-</div>
+<figure style="width: 100%">
+![:img BIDS App workflow, 100%](assets/bids-app-workflow.png)
+<figcaption>From doi:![:doi](10.1371/journal.pcbi.1005209.g002)</figcaption>
+</figure>
 
-.footnote[
-From doi:[10.1371/journal.pcbi.1005209.g002](https://doi.org/10.1371/journal.pcbi.1005209.g002)
-]
+---
+layout: true
+template: footer
+
+# BIDS Apps and Reproducibility
 
 ---
 
-* Construction of reusable pipelines is important for reproducibility
+Start-to-finish pipelines aid in performing *reproducible* analyses.
 
   * Open analysis on open data is subject to replication
   * Identical analyses on similar data tests for robustness
