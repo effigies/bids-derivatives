@@ -461,7 +461,7 @@ template: footer
 
 --
 
-* PyBIDS provides programmatic access to files and metadata in BIDS datasets.
+* PyBIDS/BIDS-MATLAB provides programmatic access to files and metadata in BIDS datasets.
 
 --
 
