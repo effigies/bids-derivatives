@@ -98,6 +98,12 @@ name: Apps
 
 ---
 
+.install-cmd[
+```Bash
+pip install pybids
+```
+]
+
 A common specification of neuroimaging datasets affords queries for and
 adaptation to the available data.
 
@@ -108,7 +114,7 @@ For example, [PyBIDS](https://github.com/bids-standard/pybids/) allows:
 >>> bold = layout.get(subject='01', suffix='bold')
 >>> bold[0].filename                                                                           
 'sub-01_task-rhymejudgment_bold.nii.gz'
->>> bold[0].metadata
+>>> bold[0].get_metadata()
 {'RepetitionTime': 2.0, 'TaskName': 'rhyme judgment'}
 ```
 
