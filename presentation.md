@@ -302,7 +302,17 @@ name: Derivatives
 * `SourceDatasets` is a list of references to the specific version of the
   dataset analyzed
 
---
+```YAML
+{
+  "Name": "FMRIPREP Outputs",
+  "BIDSVersion": "1.4.0",
+  "DatasetType": "derivative",
+  "GeneratedBy": [{"Name": "fmriprep", "Version": "1.4.1"}],
+  "SourceDatasets": [{"DOI": "10.18112/openneuro.ds000114.v1.0.1"}]
+}
+```
+
+---
 
 #### Basic metadata remains in filenames
 
